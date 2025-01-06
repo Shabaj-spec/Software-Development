@@ -1,0 +1,50 @@
+List of Refactorings
+====================
+
+Name/Banner# of Developer 1: Shabaj Islam Raad/B00946674
+Name/Banner# of Developer 2: Abdullah Durrani/B00898531
+
+Refactorings:
+=============
+
+0. EXAMPLE:  
+   File: SpressoBot.java, ChickenBot.jaba, AngryBot.java, TimBot.java
+   Location (method/approx. line #): getNextMove()
+   Issue Identified: Common code to check if move will result in 
+                    energy use and decrement energyLevel if that 
+                    is the case
+   Description of fix:  Push the common code into TimBot.java, creating a
+                        protected method to be used instead.
+   Implemented: Yes (Completely, all tests pass)
+
+1. File: AngryBot.java
+   Location: getNextMove(), approx. line 41
+   Issue Identified: Inefficient score calculation for movement.
+   Description of fix: Refactor score calculation into a separate method for better readability and potential optimization.
+   Implemented: Yes (Completely, all tests pass)
+
+2. File: ChickenBot.java
+   Location: getNextMove method, approx. line 25
+   Issue Identified: The original getNextMove method was complex and challenging to read, with embedded logic for calculating move scores and selecting a move.
+   Description of fix: Refactored the method into smaller, more focused methods for improved readability. Introduced constants (SCORE_FOR_BOT and SCORE_FOR_ADJACENT_BOT) for clarity and ease of modification. Added an early return condition for situations where the bot has no energy to move. Streamlined the score calculation logic and isolated the energy deduction to the final move selection for accuracy.
+   Implemented: Yes (Completely, all tests pass)
+
+3. File: TimSim.java
+   Location: main method, approx. line 1
+   Issue Identified: The main method was overly long and complex, mixing different levels of abstraction and handling multiple tasks.
+   Description of fix: Refactor the method by breaking it into smaller methods, each responsible for specific tasks such as loading configuration, instantiating bots, adding bots to the planet, and running the simulation rounds. This improves readability and makes the code more maintainable. Also suggested improved error handling and streamlined the simulation loop.
+   Implemented: No
+
+4. File:
+   Location (method/approx. line #):
+   Issue Identified:
+   Description of fix:
+   Implemented:
+
+5. File:
+   Location (method/approx. line #):
+   Issue Identified:
+   Description of fix:
+   Implemented:
+
+
