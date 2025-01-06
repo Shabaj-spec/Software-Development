@@ -1,0 +1,56 @@
+Bug Report
+==========
+
+Error 1:
+  Class: FriendRecommender
+  Method: makeRecommendations()
+  Test Method: testTwoFriends()
+  Message: Wrong recommendation count
+
+Error 2:
+  Class: FriendRecommender
+  Method: makeRecommendations()
+  Test Method: testNoDuplicateRecommendations()
+  Message: There should be no duplicate recommendations
+
+Error 3:
+  Class: FriendRecommender
+  Method: makeRecommendations()
+  Test Method: testMakeRecommendations()
+  Message: Should have two recommendations for Alice
+
+Error 4:
+  Class: FriendRecommender
+  Method: makeRecommendations()
+  Test Method: testRecommendationForMutualFriends()
+  Message: Mutual friends should be recommended
+
+Error 5:
+  Class: FriendRecommender
+  Method: makeRecommendations()
+  Test Method: testRecommendationWithMultipleFriends()
+  Message: Dave should be recommended to Alice
+
+Error 6:
+  Class: User
+  Method: User unfriend()
+  Test Method: testUnfriendNonExistingUser()
+  Message: Cannot read field "name" because "u" is null
+
+Error 7:
+  Class: User
+  Method: User find()
+  Test method: testFind()
+  Message: Find should return the correct user
+
+Error 8:
+  Class: User
+  Method: isFriend()
+  Test method: testIsFriend()
+  Message: Alice should not be friends with Bob initially
+
+Error 9:
+  Class: User
+  Method: user unfriend()
+  Test method: testUnfriend()
+  Message: Bob should not have Alice as a friend after being unfriended

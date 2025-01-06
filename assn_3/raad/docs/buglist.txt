@@ -1,0 +1,80 @@
+Bug Report
+==========
+
+
+For each fixed bug , please provide the following information:
+  - Class name
+  - Method name
+  - Line number
+  - Cause of bug
+  - Bug fix (or reason bug is not easily fixed)
+
+
+BUGS FOUND AND FIXED BY UNIT TEST (should be 4-5 more bugs to find):
+
+Bug 0:
+  Class: FriendRecommender
+	Method: makeRecommendations()
+	Line: 27
+	Cause: incorrect comparison
+	Fix: ???
+
+Bug 1:
+  Class: User
+	Method: find()
+	Line: 41
+	Cause: Incorrect string literal "nm" used instead of the variable nm
+	Fix: Change return users.get( "nm" ); to return users.get(nm);
+
+Bug 2:
+  Class: User
+	Method: isFriend()
+	Line: 88
+	Cause: Logical negation causing the method to return the opposite of the expected result
+	Fix: return !adj.containsKey( u.name ); to return adj.containsKey(u.name);
+
+Bug 3:
+  Class: User
+	Method: leave()
+	Line: 79
+	Cause: Incorrectly removing all users from the static users HashMap
+	Fix: Remove the line users.remove(v.name); to prevent removing all users when one user leaves
+
+Bug 4:
+  Class: User
+	Method: Constructor
+	Line: Added a line
+	Cause: The constructor does not check if a user with the same name already exists in the users HashMap before adding a new user.
+	Fix: Added a conditional check to ensure that a new user is only added if they do not already exist in the users HashMap.
+
+Bug 5:
+  Class: User
+    Method: unfriend()
+    Line: 69
+    Cause: The method does not correctly remove the current user from the other user's adj list.
+    Fix: Added the correct logic to remove the current user's name from the other user's adj list.
+
+BUGS FOUND AND FIXED USING EXPECTED INPUT (2-3):
+
+Bug 6:
+  Class: FriendRecommender
+	Method: recommend()
+	Line: 72
+	Cause: The recommend() method was not complete and it was unused
+	Fix: Implemented the correct logic in makeRecommendations() method, created an temporary arrayList and then stored
+	     all the recommendations there and then sorted it and passed it to the main list
+
+
+Bug 7:
+  Class: FriendRecommender
+	Method: compute()
+	Line: 56
+	Cause: break; statement was not present
+	Fix:  Added a break; statement
+
+Bug 8:
+  Class: FriendRecommender
+	Method: compute()
+	Line: 51
+	Cause: was calling recommend() method
+	Fix: called makeRecommendations() method
