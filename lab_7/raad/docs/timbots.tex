@@ -1,0 +1,262 @@
+\documentclass[12pt,pdftex]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{url}
+
+\begin{document}
+\newcommand{\Term}{Fall 2015}
+\newcommand{\Course}{CSCI1110}
+\newcommand{\Assignment}{TimBot Specification}
+\newcommand{\Due}{12 noon, Monday, October 19, 2015}
+
+\renewcommand{\headheight}{15pt}
+\renewcommand{\headsep}{5pt}
+\pagestyle{fancy}
+\lhead{\bf \Course}
+\chead{\bf \Term}
+\rhead{\bf \Assignment}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+\title{%\vspace*{-12ex}
+       \Assignment}
+%\author{Instructor: Alex Brodsky}
+\date{}
+\maketitle
+
+\newcommand{\ignore}[1]{}
+\newcommand{\docommand}[1]{\begin{center} \fbox{\bf\tt #1} \end{center}}
+\newcommand{\NoItemSpace}{\setlength{\parskip}{0pt}
+                          \setlength{\partopsep}{0pt}
+                          \setlength{\parsep}{0pt}
+                          \setlength{\itemsep}{0pt}}
+
+%\vspace*{-8ex}
+This is a robot simulation where robots compete for supremacy of
+the Doh-Nat Planet.
+
+\section*{Background}
+TimBots live on Doh-Nat.  A torus-shaped world that has limited
+resources.  TimBots need power to survive, but the only power source
+on Doh-Nat is Spresso, a plant that is neither plentiful, nor
+fast-growing.  Hence, the TimBots have concluded that eliminating
+each other is the best way to ensure their own survival.
+
+The surface of Doh-nat is an $m \times n$ grid, where the right
+edge of the grid is adjacent to the left edge, and the top edge is
+adjacent to the bottom edge.  Each square in the grid is called a
+district, and grows a limited number of Spresso plants.  One
+district-worth of Spresso plants provides a TimBot with a few Jolts
+of energy, which a TimBot needs to function.  Once the Spresso has
+been harvested from a district, it takes several days to grow back.
+To survive, the TimBots must roam the planet, feeding on Spresso,
+and eliminating their competitors in the process.
+
+A TimBot can move from one district to another, harvest Spresso,
+fire its ion cannon at its competitors, and defend itself with a
+force-shield.  Each of actions costs the TimBot one Jolt of energy.
+If a TimBot runs out of energy, it becomes nonfunctional.
+
+\section*{Rules of the Simulation} 
+The simulation takes place on an $m \times n$ torus grid, where the
+left edge is adjacent to the right edge, and the top edge is adjacent
+to bottom edge.  I.e., it is impossible to fall off the grid---moving
+across one edge of the grid moves the TimBot to the other side of
+the grid.
+
+The simulation takes place over a number of rounds.  Each round consists,
+of seven phases:
+\begin{enumerate}\NoItemSpace
+\item {\bf Start} each round by using one Jolt of energy to power the TimBot
+      through the rest of the round. (Additional energy may be required to
+      perform various actions.  If a TimBot does not have a Jolt of energy,
+      it becomes nonfunctional.
+
+\item {\bf Sense} the districts to the north, south, east, and west of
+      their present district.  The sensors can sense (i) the ripeness
+      of Spresso plants in a district, and (ii) if there is a TimBot
+      in a district.
+
+\item {\bf Fire} its ion cannon zero or more times (as long as the
+      TimBot has the energy to do so).  One ion shot requires one
+      Jolt of energy.  The ion cannon has a range of one district,
+      to the north, south, east, or west of the TimBot.  
+
+\item {\bf Defense} from ion cannon fire.  If a TimBot detects an 
+      ion attack, it can defend itself with its force shield (as
+      long as it has the energy to do so).  It requires one Jolt
+      of energy to stop one ion shot.  If a TimBot does not have
+      the energy to stop an ion shot, it is rendered nonfunctional.
+
+\item {\bf Move} to another district.  A TimBot may move to the
+      district north, south, east, or west of their present location.
+      A move takes one Jolt of energy.   A TimBot may also choose not
+      to move.
+
+\item {\bf Battle} within a district.  If two or more TimBots are
+      in the same district, they use their shields to try to push
+      the other TimBots out.  The TimBots keep raising their shields
+      until they run out of energy and become nonfunctional, or the
+      other TimBot(s) run out of energy first.  Hence, the
+      TimBot with the greatest amount of energy survives and all
+      the other TimBots become nonfunctional.  The winner's energy
+      level is decreased by the energy level of the runner up.
+      Hence, if there is a tie for highest energy level, all
+      combatants become nonfunctional.
+
+\item {\bf Harvest} the district (if there are Spresso plants to harvest).
+      Once the Spresso plants are harvested, it takes a number of rounds
+      to grow the Spresso plants.
+\end{enumerate}
+If a TimBot's level drops below 0, they become nonfunctional.
+
+
+\section*{Types of TimBots}
+There are four different personalities of TimBots:
+\begin{description}\NoItemSpace
+\item[ChickenBot]: (Personality C)  
+     If a ChickenBot senses a TimBot in an adjoining
+     district, it will move to an empty district that (preferably)
+     has Spresso to harvest.  That is, during the Move Phase, if
+     the Chicken Bot has one or more Jolts of energy, it will
+     consider all five districts (CURRENT, NORTH, EAST, SOUTH, and
+     WEST), and will order them according to the following criteria 
+     (in order of preference):
+     \begin{enumerate}\NoItemSpace
+     \item There are no other TimBots in the district.
+     \item There are no TimBots in the adjacent districts.
+     \item The least number of rounds before Spresso plants are ready for
+           harvest.
+     \item The order the districts as listed above.
+     \end{enumerate}
+     It will then move to the most preferred district.  The ChickenBot
+     will never fire its ion cannon, preferring to conserve energy.
+
+\item[SpressoBot]: The SpressoBot will always follow the Spresso plants.
+     It will try to move to a district where it can harvest the Spresso 
+     plants as quickly as possible.  That is, during the Move Phase, if
+     the SpressoBot has one or more Jolts of energy, it will consider all 
+     five districts (CURRENT, NORTH, EAST, SOUTH, and WEST), and will 
+     order them according to the following criteria (in order of preference):
+     \begin{enumerate}\NoItemSpace
+     \item The least number of rounds before Spresso plants are ready for
+           harvest.
+     \item There are no other TimBots in the district.
+     \item There are no TimBots in the adjacent districts.
+     \item The order the districts as listed above.
+     \end{enumerate}
+     It will then move to the most preferred district.  The SpressoBot
+     will never fire its ion cannon, preferring to conserve energy.
+
+\item[AngryBot]: The AngryBot will attack other TimBots.
+     It will try to move to a district where it can attack another TimBot
+     and, where there are Spresso plants ready for harvest (preferably).
+     That is, during the Move Phase, if the AngryBot has three or more Jolts 
+     of energy, it will consider all five districts (CURRENT, NORTH, EAST, 
+     SOUTH, and WEST), and will order them according to the following 
+     criteria (in order of preference):
+     \begin{enumerate}\NoItemSpace
+     \item There are other TimBots in the district.
+     \item The least number of rounds before Spresso plants are ready for
+           harvest.
+     \item The order the districts are listed above.
+     \end{enumerate}
+     It will then move to the most preferred district.  
+
+     If the AngryBot had less than three Jolts of energy, it behaves
+     like a SpressoBot.  An AngryBot is a subclass of
+     SpressoBot.) 
+
+\item[BullyBot]: A BullyBot is a gun-happy ChickenBot.  (A 
+     BullyBot is a subclass of ChickenBot.)  During the Fire Phase,
+     the BullyBot will shoot its cannon once into every adjoining district 
+     that has a TimBot in it, in the order NORTH, EAST, SOUTH,
+     WEST, as long as long as it has three or more Jolts of energy.  I.e.,
+     if its energy level drops to 2, it stops shooting. Otherwise, it 
+     behaves like a ChickenBot.
+\end{description}
+
+
+\section*{The Simulation}
+The simulator reads in the simulation configuration and then
+instantiates and runs the the simulation, printing out the state
+of the simulation after each round.  The simulation continues until
+the required number of rounds have transpired.
+
+\subsection*{Input}
+The input format to the simulator is as follows: The input comprises 
+six integers, follow by one or more TimBot configurations.  The
+first six integers are:
+\begin{quote}
+\begin{description}\NoItemSpace
+\item[R]: number of rows in the grid representing planet DohNat
+\item[C]: number of columns in the grid representing planet DohNat
+\item[J]: number of jolts that Spresso harvest yields
+\item[G]: number of rounds needed for Spresso to grow after harvest
+\item[N]: maximum number of rounds to run the simulation for
+\item[T]: number of TimBot configurations to follow.
+\end{description}
+\end{quote}
+
+A TimBot configuration consists of one string and four integers.
+\begin{quote}
+\begin{description}\NoItemSpace
+\item[P]: string denoting personality of TimBot.  E.g.,
+          {\tt chicken}, {\tt spresso}, {\tt angry}, {\tt bully}.
+\item[I]: the numeric ID of the TimBot.  (All IDs are assumed to be unique.)
+\item[X]: the $x$ coordinate of the TimBot in the grid, where  $0 \leq X < C$
+\item[Y]: the $y$ coordinate of the TimBot in the grid, where  $0 \leq Y < R$
+\item[E]: number of Jolts the TimBot initially has at the start of 
+          the simulation.
+\end{description}
+\end{quote}
+All values are separated by white-space.  
+
+\subsection*{Semantics}
+Upon reading the configuration, the simulator instantiates a {\it
+DohNat} using arguments $R$, $C$, $J$, and $G$.  The simulator
+creates a list of {\it TimBot} objects, one for each configuration,
+and adds the objects to the {\it DohNat} object.  The simulator
+then loops for at most $N$ times, executing a round during each
+iteration.  At the end of each round, the simulator outputs the
+state of the similation and traverses the list of {\it TimBot}
+objects to count all functional TimBots.  If the number of functional
+TimBots is one or less, the simulator stops the loop.
+
+\subsection*{Output}
+After each round completes, the simulator prints out to the 
+console the string {\tt Round $r$}, where $r$ is the current round,
+followed by the grid of {\it DohNat}.  The format is:
+\begin{quote}
+\noindent {\tt Round $r$\\
+\noindent $\begin{array}{lllll}
+D_{0,0} & D_{1,0} & D_{2,0} & \ldots &  D_{C-1,0}\\
+D_{0,1} & D_{1,1} & D_{2,1} & \ldots &  D_{C-1,1}\\
+D_{0,2} & D_{1,2} & D_{2,2} & \ldots &  D_{C-1,2}\\
+\vdots  & \vdots  & \vdots  & \ddots  & \vdots \\
+D_{0,R-1} & D_{1,R-1} & D_{2,R-1} & \ldots &  D_{C-1,R-1}\\
+\end{array}$}
+\end{quote}
+where $D_{x,y}$ is the district at coordinates $(x,y)$, and uses the format
+specified by the {\it District} class.
+
+\subsection*{Sample Input }
+\begin{quote}
+\begin{verbatim}
+5 5 5 10 100 4
+chicken 1 2 2 1
+spresso 2 3 3 1
+angry 3 2 3 1
+bully 4 3 2 1
+\end{verbatim}
+\end{quote}
+
+\subsection*{Sample Output}
+\begin{quote}
+\input{output.tex}
+\end{quote}
+
+\end{document}

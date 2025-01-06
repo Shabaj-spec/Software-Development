@@ -1,0 +1,42 @@
+List of Refactorings
+====================
+
+Name/Banner# of Developer 1: Shabaj Islam Raad / B00946674
+Name/Banner# of Developer 2: Abdullah Durrani / B00898531
+
+Refactorings:
+=============
+
+0. EXAMPLE:  
+   File: AngryBot.java
+   Location (method/approx. line #): getNextMove(), line 54
+   Issue Identified: Magic number
+   Description of fix:  Replaced with constant EMPTY_DISTRICT_PENALTY
+
+1. File: AngryBot.java
+   Location (method/approx. line #): getNextMove(), line 52
+   Issue Identified: Magic number
+   Description of fix: Replaced with constant MIN_ENERGY_LEVEL_FOR_ATTACK
+
+2. File: AngryBot.java
+   Location (method/approx. line #): getNextMove(),  line 49 - 65
+   Issue Identified:  Long method, hard to read
+   Description of fix: The score calculation logic is now encapsulated in calculateDistrictScores() .
+                       The decision-making logic to determine the best move is encapsulated in determineBestMove().
+
+3. File: TimBot.java
+   Location (method/approx. line #): senseDistricts() , line 84
+   Issue Identified: Inappropriate intimacy
+   Description of fix: Two new protected methods added, setSpressoSensed and setBotsSensed, encapsulate the logic for setting the sensed values. They ensure that the input arrays are valid and match the expected length before copying the values.
+
+4. File: ChickenBot.Java
+   Location (method/approx. line #): getNextMove(), line 58-59
+   Issue Identified: Magic number
+   Description of fix: Replaced with constant OTHER_BOTS_PENALTY and ADJACENT_BOTS_PENALTY
+
+5. File:
+   Location (method/approx. line #):
+   Issue Identified:
+   Description of fix:
+
+
