@@ -1,0 +1,48 @@
+Bug Report
+==========
+
+For each bug, please provide the following information:
+  - Method name
+  - Test method name
+  - Message produced by the test method
+  - Suggest a way that the bug revealed by the test can be fixed.
+  - Any additional comments or analysis that the test revealed.
+
+Example:
+Error 0:
+  Method: getElem()
+  Test Method: testgetElem_unicorn()
+  Message: getElem_unicorn() did not return a Unicorn
+  Suggestion: Implement a Unicorn class
+  Comments: Java does not have a standard Unicorn class
+
+Error 1:
+  Method: setElem()
+  Test Method: testsetElem_unicorn()
+  Message: setElem_unicorn() did not set a Unicorn
+  Suggestion: Implement a Unicorn class
+  Comments: Java does not have a standard Unicorn class
+
+Error 2:
+  Method: add()
+  Test Method: testadd()
+  Message: Expected java.lang.ArithmeticException to be thrown, but nothing was thrown.
+  Suggestion: Implement overflow detection in the add method. When adding two elements, check if the result exceeds the maximum value for a double. If so, throw an ArithmeticException or handle it by saturating at the maximum value.
+  Comments: This bug suggests that the current implementation does not account for numerical overflow, which can lead to incorrect results or unexpected behavior.
+
+Error 3:
+   Method: multiplyWithScalar()
+   Test Method: testmultiplyWithScalar()
+   Message: Multiplying by a negative did not negate the matrix correctly.
+   Suggestion: Modify the multiplyWithScalar method to correctly handle negative scalar values. Ensure that every element of the matrix is multiplied by the scalar. The loop in multiplyWithScalar should start from index 0 instead of 1 for both i and j.
+   Comments: The issue is likely due to incorrect indexing in the loop, which causes some elements to not be multiplied by the scalar.
+
+Error 4:
+    Method: multiplyWithMatrix()
+    Test Method: testmultiplyWithMatrix()
+    Message: The method did not correctly handle multiplication when the result matrix is an operand.
+    Suggestion: To handle the case where the result matrix is also an operand, it's necessary to either ensure the calculation does not overwrite the operand before it's used or use a temporary matrix to hold the results before copying them back to the result matrix.
+    Comments: This bug indicates that the method does not account for scenarios where input matrices are also used as output. This can lead to incorrect calculations as the matrix is overwritten during the operation.
+
+
+*********** ADD AS MANY MORE AS NEEDED *******************

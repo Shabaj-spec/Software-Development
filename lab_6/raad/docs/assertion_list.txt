@@ -1,0 +1,31 @@
+ASSERTION LIST: Where should assertions be added?
+=================================================
+
+Name/Banner# of Developer 1: Shabaj Islam Raad/B00946674
+Name/Banner# of Developer 2: Abdullah Durrani/B00898531
+
+Example:
+Method:   Line #     Assertion itself
+write()   238-239    width >= 0, height >= 0
+
+add 3 more with different assert conditions
+
+Assertion1:
+    Method: multiplyWithMatrix()
+    Line: 179
+    Assertion: b != null
+
+Assertion2:
+    Method: multiplyWithMatrix()
+    Line: 180
+    Assertion: res != null
+
+Assertion3:
+    Method: equals()
+    Line:87
+    Assertion: a != null
+
+Assertion4:
+    Method: negate()
+    Line: 113
+    Assertion: height > 0 && width > 0

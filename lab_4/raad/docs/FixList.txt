@@ -1,0 +1,74 @@
+Fix List
+==========
+
+Student1BannerID: B00946674
+Student1Name: Shabaj Islam Raad
+Student1CSID: raad
+
+You may work as a group with a second student but do not have to.
+Only one student in a group should submit the lab.
+
+Student2BannerID: B00898531
+Student2Name: Abdullah Durrani
+Student2CSID: durrani
+
+For each bug, please provide the following information:
+  - location
+  - what was fixed
+  - amount of time it took
+
+Example:
+Defect 0:
+  Location: getWidth(): line 261
+  Fix: wrong return value, should be width not height
+  Time: 5 minutes
+
+Defect 1:
+  Location: equals(): line 88
+  Fix: Unnecessary semicolon, removed it
+  Time: 4 minutes
+
+Defect 2:
+  Location: equals(): line 94
+  Fix: for loops i <= height caused index out of bounds, so changed it to i < height
+  Time: 9 minutes
+Defect 3:
+  Location: equals(): line 95
+  Fix: for loops i <= width caused index out of bounds, so changed it to i < width
+  Time: 1 minute
+Defect 4:
+  Location: getElem(): line 246
+  Fix: return matrix[i][j] was wrong, fixed it to return matrix [i-1][j-1]
+  Time: 13 minutes
+Defect 5:
+  Location: setElem(): line 258
+  Fix: matrix[i][j] = v; was wrong, fixed it to matrix[i-1][j-1] = v;
+  Time: 3 minutes
+Defect 6:
+  Location: negate(): line 116
+  Fix: matrix[i][j] = -matrix[j][i]; was wrong, fixed it to matrix[i][j] = -matrix[i][j];
+  Time: 3 minutes
+Defect 7:
+  Location: multiplyWithScalar(): line 165
+  Fix: for (int j = 0; i < width; j++) was wrong, fixed it to: for (int j = 0; j < width; j++)
+  Time: 4 minutes
+
+
+
+
+
+ANALYSIS:
+
+1. Compute how long it took you to complete all the bug fixes and the average time per bug fix.
+
+Total time: 37 minutes
+Number of bugs: 7
+Average time per bug fix: 5 minutes 28 seconds
+
+2. What was the hardest bug you fixed and what made it hard to fix?
+I think the negate() one was the hardest bug to fix, because I just could not think of whats wrong with that, because thats too small bug and its really hard to look for something like that.
+
+
+3. How consistent was your time to fix each bug? What factors may have affected that consistency?
+It was pretty consistent at first but then I was confused, whats all the yellow sign means in Intelli Je, like field matrix may be final, though its not a bug or an error, but these kind of things bothered me a lot. Rather than this, fixing the test cases was not that bad.
+

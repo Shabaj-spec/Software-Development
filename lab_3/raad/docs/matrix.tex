@@ -1,0 +1,108 @@
+\documentclass[12pt,pdftex]{article}
+
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{url}
+
+\begin{document}
+\newcommand{\Term}{Fall 2015}
+\newcommand{\Course}{CSCI1110}
+\newcommand{\Assignment}{Assignment~3}
+\newcommand{\Due}{12 noon, Monday, October 5, 2015}
+
+\renewcommand{\headheight}{15pt}
+\renewcommand{\headsep}{5pt}
+\pagestyle{fancy}
+\lhead{\bf \Course}
+\chead{\bf \Term}
+\rhead{\bf \Assignment}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+
+\title{%\vspace*{-12ex}
+       A Matrix Primer}
+\author{Alex Brodsky}
+\date{}
+\maketitle
+
+\newcommand{\ignore}[1]{}
+\newcommand{\docommand}[1]{\begin{center} \fbox{\bf\tt #1} \end{center}}
+\newcommand{\NoItemSpace}{\setlength{\parskip}{0pt}
+                          \setlength{\partopsep}{0pt}
+                          \setlength{\parsep}{0pt}
+                          \setlength{\itemsep}{0pt}}
+
+
+A matrix of size $m \times n$ is a 2D grid of values, typically
+decimal numbers, with $m$ rows and $n$ columns.  Element $E[i,j]$
+of a matrix, refers to the value in row $i$ and column $j$.  Element
+$E[1,1]$ is in the top left corner of the matrix and element $E[m,n]$
+is the bottom right corner of the matrix.  A matrix can be added
+with another matrix, multiplied by a scalar, or multiplied by another
+matrix.
+
+Two matrices can be added only if they have the same size.  Addition
+is performed element-wise, meaning that if $C = A + B$, where $C$, $B$, 
+and $A$, are matrices, then element $C[i,j] = A[i,j] + B[i,j]$ for all 
+elements of $C$.  E.g.,
+\[\left[ 
+\begin{array}{cc}
+6 & 8 \\
+10 & 12 \\
+\end{array}\right]
+=
+\left[\begin{array}{cc}
+1 & 2 \\
+3 & 4 \\
+\end{array}\right]
++
+\left[\begin{array}{cc}
+5 & 6 \\
+7 & 8 \\
+\end{array}\right]\]
+
+Any matrix can be multiplied by a scalar, which is typically a decimal
+value.   Scalar multiplication is performed element-wise, meaning
+that if $C = s A$, where $s$ is a scalar value and $A$ is a matrix,
+then $C[i,j] = s \times A[i,j]$. E.g.,
+\[\left[ 
+\begin{array}{cc}
+-3 & -6 \\
+-9 & -12 \\
+\end{array}\right]
+=
+-3
+\left[\begin{array}{cc}
+1 & 2 \\
+3 & 4 \\
+\end{array}\right]\]
+
+Two matrices can be multiplied only if the width of the first matrix
+is equal to the height of the second matrix.  If $C = A B$, where $A$
+is a matrix of size $m \times n$, $B$ is a matrix of size $n \times p$, 
+and $C$ is a matrix of size $m \times p$, then 
+\[C[i,j] = A[i,1]\times B[1,j] + A[i,2]\times B[2,j] + A[i,3]\times B[3,j] + 
+  \ldots + A[i,n]\times B[n,j]\]
+E.g., 
+\[\left[ 
+\begin{array}{ccc}
+9 & 12 & 15 \\
+19 & 26 & 33 \\
+29 & 40 & 51 \\
+39 & 54 & 69 \\
+\end{array}\right]
+=
+\left[\begin{array}{cc}
+1 & 2 \\
+3 & 4 \\
+5 & 6 \\
+7 & 8 \\
+\end{array}\right]
+\left[\begin{array}{ccc}
+1 & 2 & 3\\
+4 & 5 & 6 \\
+\end{array}\right]\]
+
+\end{document}
